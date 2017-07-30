@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PantauMeter</string>
+    <string name="title_activity_input_parameter">InputParameter</string>
+</resources>
