@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -26,14 +28,16 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
+
 public class ListPelanggan extends AppCompatActivity {
     public RecyclerView myRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public RecyclerView.Adapter mAdapter;
     List<DataPojo> arrayList= new ArrayList<>();
-
-
+    private Context context=null;
+    private Button btnUpdateList;
     private String URL="";
+    private SqlPelangganHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +46,66 @@ public class ListPelanggan extends AppCompatActivity {
         myRecyclerView = (RecyclerView)findViewById(R.id.recycleLayout);
         mLayoutManager = new LinearLayoutManager(this);
         myRecyclerView.setLayoutManager(mLayoutManager);
+        btnUpdateList = (Button)findViewById(R.id.btnUpdateList);
 
+        context = getApplicationContext();
+        initialize(0);
 
-        loadDatabase();
+        btnUpdateList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GetConnection gc = GetConnection.getInstance();
+
+                if (gc.isNetworkAvailable(context)) {
+                    initialize(1);
+                }else{
+                    Toast.makeText(context,"Maaf, Tidak Ada Koneksi",Toast.LENGTH_LONG).show();
+                }
+            }
+
+        });
     }
 
-    public void loadDatabase(){
-        final ProgressDialog dialog = new ProgressDialog(ListPelanggan.this);
+    private void initialize(int status){
+        GetConnection gc =GetConnection.getInstance();
+        db= new SqlPelangganHelper(this);
 
+              arrayList.clear();
+              arrayList = db.getAllContacts();
+            //check this from first or update
+            if(status==0) {
+                //check if data has insert or still null
+                if(arrayList.size()==0)
+                    {
+                        if(gc.isNetworkAvailable(context)) {
+                            loadDatabase(0);
+                            arrayList = db.getAllContacts();
+                            Log.d("DATABASE","data kosong membuat data baru");
+                        }else{
+                            Toast.makeText(context,"Maaf, Tidak Ada Koneksi",Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        //load database
+                        arrayList = db.getAllContacts();
+                    }
+
+                Log.d("DATABASE","UPDATE count = "+ arrayList.size());
+                mAdapter= new PelangganAdapter (arrayList,getApplicationContext());
+                myRecyclerView.setAdapter(mAdapter);
+
+            }else {
+                    db.delete();
+                    loadDatabase(1);
+
+            }
+
+
+
+
+    }
+
+    public void loadDatabase(final int status){
+        final ProgressDialog dialog = new ProgressDialog(ListPelanggan.this);
         dialog.setMessage("Get Data...");
         dialog.setCancelable(false);
         dialog.show();
@@ -57,7 +113,7 @@ public class ListPelanggan extends AppCompatActivity {
 
 //      arrayList.clear();
 //        URL="http://10.0.3.2:8080/manajemen_pelanggan/API/pelanggan";
-        URL="http://192.168.1.9:8080/manajemen_pelanggan/API/pelanggan";
+        URL="http://192.168.1.7:8080/manajemen_pelanggan/API/pelanggan";
         client.setConnectTimeout(10000);
         client.get(getApplicationContext(), URL,new JsonHttpResponseHandler(){
 
@@ -70,19 +126,24 @@ public class ListPelanggan extends AppCompatActivity {
                     for (int i=0;i<jsonArray.length();i++){
 
                         JSONObject object= jsonArray.getJSONObject(i);
-                        DataPojo data= new DataPojo(Integer.valueOf(object.getString("id_pel")),Integer.valueOf(object.getString("no_tiang")),object.getString("nama"),object.getString("alamat"),object.getString("lat"),object.getString("long"),object.getString("kode_baca"));
-                        arrayList.add(data);
+                        DataPojo data= new DataPojo(Integer.valueOf(object.getString("id")),Integer.valueOf(object.getString("id_pel")),object.getString("nama"),object.getString("alamat"),object.getString("no_tiang"),object.getString("lat"),object.getString("long"),object.getString("kode_baca"),object.getString("status"));
+                        db.addContact(data);
+
                     }
-                    mAdapter= new PelangganAdapter (arrayList,getApplicationContext());
-                    myRecyclerView.setAdapter(mAdapter);
-
-
+                    if(status==1){
+                        arrayList = db.getAllContacts();
+                        Log.d("DATABASE","UPDATE count = "+ arrayList.size());
+                        mAdapter= new PelangganAdapter (arrayList,getApplicationContext());
+                        myRecyclerView.setAdapter(mAdapter);
+                    }
+                    if (dialog.isShowing()) {
+                        dialog.dismiss();
+                        Toast.makeText(getApplicationContext(),"Data Berhasil di Perbarui",Toast.LENGTH_LONG).show();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                if (dialog.isShowing()) {
-                    dialog.dismiss();
-                }
+
             }
 
         });
@@ -105,15 +166,16 @@ public class ListPelanggan extends AppCompatActivity {
                 public void onClick(View view) {
                     int pos = myRecyclerView.getChildAdapterPosition(view);
                     if (pos >= 0 && pos < getItemCount()) {
-                        Intent intent= new Intent(context,InputMeteran.class);
+                        Intent intent= new Intent(context,DetailPelanggan.class);
+                        intent.putExtra("id1",arrayList.get(pos).getId1());
                         intent.putExtra("no_pel",arrayList.get(pos).getNo_Pel());
-                        Log.d("Hasil","Awal - "+ arrayList.get(pos).getNo_Pel());
                         intent.putExtra("no_tiang",arrayList.get(pos).getNo_tiang());
                         intent.putExtra("nama",arrayList.get(pos).getNama());
                         intent.putExtra("alamat",arrayList.get(pos).getAlamat());
                         intent.putExtra("lat",arrayList.get(pos).getLat());
                         intent.putExtra("long",arrayList.get(pos).getLng());
                         intent.putExtra("kode_baca",arrayList.get(pos).getKode_baca());
+                        intent.putExtra("status",arrayList.get(pos).getStatus());
                         startActivity(intent);
                     }
                 }
@@ -145,5 +207,13 @@ public class ListPelanggan extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
+
 
 }

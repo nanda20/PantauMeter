@@ -3,6 +3,7 @@ package com.dev.muslim.pantaumeter;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -26,6 +27,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.SyncHttpClient;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -52,21 +55,22 @@ import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 public class InputMeteran extends AppCompatActivity {
     private static final String TAG = "InputMeteran";
-    TextView id_pel;
+    TextView id_pel,txtStatusUpload;
     ImageView imageView;
     EditText txtStandIni,txtKelainan;
     Button btnUpload;
+    public boolean statusUpload=false;
 
     //utilitys for capture
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
     public static final int MEDIA_TYPE_IMAGE = 1;
     private static final String IMAGE_DIRECTORY_NAME = "PantauMeter";
     private Uri fileUri; // file url to store image/video
-
+    private GetConnection connection= null;
+    private String id1="";
     //upload
 //  private static final String SERVER_PATH = "http://10.0.3.2:8080/manajemen_pelanggan/api/upload/";
-
-    private static final String SERVER_PATH = "http://192.168.1.9:8080/manajemen_pelanggan/api/upload/";
+    private static final String SERVER_PATH = "http://192.168.1.7:8080/manajemen_pelanggan/api/upload/";
     private static final int READ_REQUEST_CODE = 300;
 
     @Override
@@ -78,11 +82,11 @@ public class InputMeteran extends AppCompatActivity {
         txtStandIni = (EditText)findViewById(R.id.standIni);
         txtKelainan= (EditText)findViewById(R.id.kelainan);
         btnUpload= (Button)findViewById(R.id.btnUpload);
-
+        txtStatusUpload =(TextView)findViewById(R.id.txtStatusUpload);
 
         Intent intent= getIntent();
         id_pel.setText(String.valueOf(intent.getIntExtra("no_pel",0)));
-
+        id1=String.valueOf(intent.getIntExtra("id1",0));
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +98,12 @@ public class InputMeteran extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                new UploadFileToServer().execute();
+                connection= GetConnection.getInstance();
+                if(connection.isNetworkAvailable(getApplicationContext())) {
+                    new UploadFileToServer().execute();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Tidak Ada Jaringan Internet",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -184,31 +193,44 @@ public class InputMeteran extends AppCompatActivity {
 
     public class UploadFileToServer extends AsyncTask<Void, Integer, String> {
 
+
         private final ProgressDialog dialog = new ProgressDialog(InputMeteran.this);
 
         protected void onPreExecute() {
             this.dialog.setMessage("Loading...");
             this.dialog.setCancelable(false);
             this.dialog.show();
+            Log.d("TASK","onPreExecute");
         }
+
+
         @Override
         protected String doInBackground(Void... params) {
 
-//          uploadImage(); // inside the method paste your file uploading code
-            uploadImage2();
+            Log.d("TASK","doInBackground");
+                uploadImage2();
             return null;
         }
 
         @Override
         protected void onProgressUpdate(Integer... progress) {
-//            progressBar.setVisibility(View.VISIBLE);
-            // updating percentage value
-//            progressBar.setProgress(progress[0]);
+            Log.d("TASK","onProgressUpdate");
+            connection= GetConnection.getInstance();
 
-            // updating percentage value
-//            txtPercentage.setText(String.valueOf(progress[0]) + "%");
+            if(!connection.isNetworkAvailable(getApplicationContext()))
+            {
+                Toast.makeText(getApplicationContext(),"Upload Terhenti, Coba beberapa saat lagi ",Toast.LENGTH_LONG).show();
 
-            Log.d("Loading",String.valueOf(progress[0]));
+                onCancelled();
+                onDestroy();
+                txtStatusUpload.setText("Gagal Upload,Coba beberapa saat Lagi");
+
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+
+            }
+
         }
 
         @Override
@@ -217,18 +239,19 @@ public class InputMeteran extends AppCompatActivity {
             if (dialog.isShowing()) {
                 dialog.dismiss();
             }
+            if(statusUpload==true){
+                Toast.makeText(getApplicationContext(),"Data Berhasil di Upload",Toast.LENGTH_LONG).show();
+                btnUpload.setEnabled(false);
+                txtStatusUpload.setText("Data Berhasil Di Upload");
+            }else{
+                Toast.makeText(getApplicationContext(),"Data Gagal di Upload",Toast.LENGTH_LONG).show();
+                txtStatusUpload.setText("Gagal Upload,Coba beberapa saat Lagi");
+            }
         }
     }
 
     //upload image using loopj
     private void uploadImage2(){
-        Bitmap bitmap;
-
-//        bitmap=BitmapFactory.decodeFile(fileUri.getPath());
-//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 75, bos);
-//        byte[] data = bos.toByteArray();
-
         File myFile = new  File(fileUri.getPath());
 
         SyncHttpClient client = new SyncHttpClient();
@@ -238,25 +261,33 @@ public class InputMeteran extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
 //        params.setUseJsonStreamer(false);
+        params.put("id1",id1);
         params.put("id_pel",String.valueOf(id_pel.getText()));
         params.put("stand",String.valueOf(txtStandIni.getText()));
         params.put("kelainan",String.valueOf(txtKelainan.getText()));
 
-        client.post(getApplicationContext(),SERVER_PATH, params, new JsonHttpResponseHandler(){
+        //client.setConnectTimeout(3000);
+        client.post(SERVER_PATH, params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Log.d("response"," Success "+response.toString());
-//                Toast.makeText(getApplicationContext(),"Success"+response.toString(),Toast.LENGTH_LONG).show();
+                statusUpload=true;
             }
 
+
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                Log.d("response"," Failed "+responseString.toString());
-//                Toast.makeText(getBaseContext(),"Failed "+responseString.toString(),Toast.LENGTH_LONG).show();
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.d("response"," Failed "+errorResponse.toString());
+                statusUpload=false;
+
+//                Toast.makeText(getApplicationContext(),"Data Gagal di Upload",Toast.LENGTH_LONG).show();
+
             }
+
         });
 
 

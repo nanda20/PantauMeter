@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.1.0_a7d8d9c700a726de6b4dd50780b96985f68f84b8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-transition-25.1.0_112d9d0c065fb4b978077325589ee1c6eeb27d1f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.0_4b47017ea1f87978681945c5051dacf4529ce5e1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.1.0_d6a6052d7139e0b28e5c8a02d9e688c7c56b47b4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\pub.devrel\easypermissions\0.2.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ee2708a9c0516e58ec052169364c693fae68af3c">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\pub.devrel-easypermissions-0.2.0_26ddca5caa18af78e3fa49eea7e470e41178a723.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\owner\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.2\f1bc476cc167b18e66c297df599b2377131a8947\gson-2.6.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\gson-2.6.2_d2690a775414a3ba23065fbbf58fba94b1171f01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\master\dll\android-sdk-windows\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\support-annotations-25.1.0_952196daa2663a06882ef0c8a4514c2046e92c8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.1.0_54bdad9bfc78a4d3d1dcb2d94f2f6d091a0f7c6a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\owner\.gradle\caches\modules-2\files-2.1\com.loopj.android\android-async-http\1.4.9\386a4339ffe52d5d63e80f9bed8d2b1d1a418249\android-async-http-1.4.9.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.9_bd19c3d079f2b4118eb2e7661c87c187e4a317c7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\owner\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.2.0\f7873a2ebde246a45c2a8d6f3247108b4c88a879\okhttp-3.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\okhttp-3.2.0_656109bf7411492fc362e6f197ee7462915d3f34.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\owner\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.0.1\27293c440d2085cde1d859528aff6e7d3b6ae40\retrofit-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="027293c440d2085cde1d859528aff6e7d3b6ae40">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\retrofit-2.0.1_621b0ad5ca80226bc55aa2398ca35be75f2803ea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="7f2420506110902f033406b25697cf97ee8c38b2">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-25.1.0_c21823bf9c8707970fe5f32e882cd4bda73f2b9e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\owner\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\okio-1.6.0_9f753b23acb78382a54741a0b27e6354c87428bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.1.0_bfbf0cd678c3d5fc85445b5c0e7057658deaf646.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.1.0_2e14d254dbc3aff63c84b826f793de8ef0a3ebcc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.1.0_1a0b106d8472a91d143efdf1713d0470e314704b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\owner\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.0.1\2780d858273ce1bb90f6b12e1ef0d40f7741fca\converter-gson-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="02780d858273ce1bb90f6b12e1ef0d40f7741fca">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\converter-gson-2.0.1_29e98d413140b5c5ea3d7adf9578b1c4db2734de.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.0_03af59ca957e489e6db1b5dcf0fbdd7783eebc50.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.1.0_130dc117955faff77489f66ac05ae3aa926d77a1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\design\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-design-25.1.0_6e28938b180c1b15982dbd80fed9eda6116fa18c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\owner\.gradle\caches\modules-2\files-2.1\cz.msebera.android\httpclient\4.3.6\526a9f794eab830eae4f23a62c572878b3f491ab\httpclient-4.3.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="526a9f794eab830eae4f23a62c572878b3f491ab">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\httpclient-4.3.6_8f7a315dcf240cb2b8e3f6328dbead822bb9a45c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.1.0_cf17c6c8f29fcc342459629584c94dd1e1248cea.jar" />
+    </item>
+
+</items>

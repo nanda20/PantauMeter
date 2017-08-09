@@ -5,16 +5,21 @@ package com.dev.muslim.pantaumeter;
  */
 
 public class DataPojo {
+    private int id1;
     private int id_pel;
-    private int no_tiang;
+    private String no_tiang;
     private String nama;
     private String alamat;
     private String lat;
     private String lng;
     private String kode_baca;
+    private String status;
+    public  DataPojo(){
 
-    public DataPojo(int id_pel, int no_tiang,String nama, String alamat, String lat,String lng,String kode_baca) {
+    }
 
+    public DataPojo(int id1,int id_pel,String nama, String alamat ,String  no_tiang, String lat,String lng,String kode_baca,String status) {
+        this.id1=id1;
         this.id_pel= id_pel;
         this.no_tiang= no_tiang;
         this.nama= nama;
@@ -22,6 +27,7 @@ public class DataPojo {
         this.lat = lat;
         this.lng = lng;
         this.kode_baca = kode_baca;
+        this.status = status;
     }
 
     public int getNo_Pel() {
@@ -32,11 +38,11 @@ public class DataPojo {
         this.id_pel = id_pel;
     }
 
-    public int getNo_tiang() {
+    public String getNo_tiang() {
         return no_tiang;
     }
 
-    public void setNo_tiang(int no_tiang) {
+    public void setNo_tiang(String no_tiang) {
         this.no_tiang = no_tiang;
     }
 
@@ -78,5 +84,21 @@ public class DataPojo {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public int getId1() {
+        return id1;
+    }
+
+    public void setId1(int id1) {
+        this.id1 = id1;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

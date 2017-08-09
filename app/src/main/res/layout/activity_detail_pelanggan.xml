@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_detail_pelanggan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.dev.muslim.pantaumeter.DetailPelanggan">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        android:background="#fafafa"
+        >
+      <LinearLayout
+          android:layout_margin="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:padding="10dp"
+          android:background="#f5f4f4"
+          >
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="ID Pelanggan"
+              android:id="@+id/titelIdPelanggan"
+              android:textSize="15dp"
+              />
+          <TextView
+
+              android:layout_toRightOf="@+id/titelIdPelanggan"
+              android:layout_marginLeft="15dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="15dp"
+              android:text="1124124"
+              android:id="@+id/txtIdPelanggan"
+              />
+
+      </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="#f5f4f4"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:id="@+id/titelNama"
+                android:textSize="15dp"
+                />
+            <TextView
+
+                android:layout_toRightOf="@+id/titelNama"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Sugimin"
+                android:id="@+id/txtNama"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="#f5f4f4"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alamat"
+                android:id="@+id/titelAlamat"
+                android:textSize="15dp"
+                />
+            <TextView
+
+                android:layout_toRightOf="@+id/titelAlamat"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Jl. Semanggi 43 B, Ds Lowokwaru donomulyo malang"
+                android:id="@+id/txtAlamat"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="#f5f4f4"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Tiang"
+                android:id="@+id/titelNoTiang"
+                android:textSize="15dp"
+                />
+            <TextView
+
+                android:layout_toRightOf="@+id/titelNoTiang"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="13"
+                android:id="@+id/txtNoTiang"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="#f5f4f4"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Tiang"
+                android:id="@+id/titelLatLong"
+                android:textSize="15dp"
+                />
+            <TextView
+
+                android:layout_toRightOf="@+id/titelNoTiang"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="-7.9472072,112.6139054"
+                android:id="@+id/txtLatLong"
+                />
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@mipmap/ic_map"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/buttonMaps"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="#f5f4f4"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kode Baca"
+                android:id="@+id/titelKodeBaca"
+                android:textSize="15dp"
+                />
+            <TextView
+
+                android:layout_toRightOf="@+id/titelKodeBaca"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="T121"
+                android:id="@+id/txtKodeBaca"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="#f5f4f4"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:id="@+id/titleStatus"
+                android:textSize="15dp"
+                />
+            <TextView
+
+                android:layout_toRightOf="@+id/titleStatus"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Sudah Terdata"
+                android:id="@+id/txtStatus"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="-10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#f5f4f4"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="BACK"
+                android:id="@+id/btnBack"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="NEXT"
+                android:id="@+id/btnNext"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
