@@ -18,8 +18,8 @@ import java.util.List;
 
 public class SqlPelangganHelper extends SQLiteOpenHelper {
     private  static final int DB_VERSION=3;
-    private static final String DB_NAME = "listPelanggan";
-    private static final String TABLE_CONTACT = "pelanggan";
+    private static final String DB_NAME = "PANTAUMETER";
+    public static final String TABLE_CONTACT = "pelanggan";
     private static final String ID1 = "id";
     private static final String ID_PEL = "id_pel";
     private static final String NO_TIANG = "no_tiang";
@@ -28,9 +28,16 @@ public class SqlPelangganHelper extends SQLiteOpenHelper {
     private static final String LAT = "lat";
     private static final String LNG = "long";
     private static final String KODE_BACA = "kode_baca";
-    private static final String STATUS = "status";
-    private  static SqlPelangganHelper sInstance;
+    public  static final String STATUS = "status";
+
+    public static final String TABEL_DRAF="draf";
+    public static final String STAND_KINI="stand_kini";
+    public static final String FOTO="foto";
+    public static final String KETERANGAN="keterangan";
+
+    private static SqlPelangganHelper sInstance;
     Context context;
+
 
     public  static synchronized SqlPelangganHelper getsInstance(Context context){
         if(sInstance==null){
@@ -50,12 +57,14 @@ public class SqlPelangganHelper extends SQLiteOpenHelper {
 
 
         if (!database.exists()) {
-            String CREATE_CONTACT_TABLE="CREATE TABLE "+ TABLE_CONTACT+
+            String CREATE_CONTACT_TABLE1="CREATE TABLE "+ TABLE_CONTACT+
                     "("+ID1+" INTEGER PRIMARY KEY, "+ ID_PEL+" TEXT,"+ NAMA +" TEXT,"+ALAMAT+" TEXT,"+NO_TIANG+" TEXT,"+ LAT +" TEXT, "+LNG +" TEXT, "+ KODE_BACA +" TEXT ,"+ STATUS +" TEXT "+")";
+            sqLiteDatabase.execSQL(CREATE_CONTACT_TABLE1);
 
-            sqLiteDatabase.execSQL(CREATE_CONTACT_TABLE);
+            String CREATE_CONTACT_TABLE2="CREATE TABLE "+ TABEL_DRAF+
+                    "("+ID1+" INTEGER PRIMARY KEY, "+ ID_PEL+" TEXT,"+ NAMA +" TEXT,"+STAND_KINI+" TEXT,"+ FOTO +" TEXT,"+ KETERANGAN +" TEXT)";
+            sqLiteDatabase.execSQL(CREATE_CONTACT_TABLE2);
             Toast.makeText(context,"On Create",Toast.LENGTH_SHORT).show();
-
             Log.i("Database", "Not Found");
         } else {
 
@@ -67,6 +76,20 @@ public class SqlPelangganHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+    public void addDraf(DataPojo draf){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+        values.put(ID1,draf.getId1());
+        values.put(ID_PEL,draf.getNo_Pel());
+        values.put(NAMA,draf.getNama());
+        values.put(STAND_KINI,draf.getStandKini());
+        values.put(FOTO,draf.getFoto());
+        values.put(KETERANGAN,draf.getKeterangan());
+        db.insert(TABEL_DRAF,null,values);
+        db.close();
+        Log.d("DATABASE","Add Data "+draf.getNama());
 
     }
 
@@ -90,7 +113,7 @@ public class SqlPelangganHelper extends SQLiteOpenHelper {
 
     public List<DataPojo> getAllContacts(){
         List<DataPojo> pelangganList = new ArrayList<DataPojo>();
-        String selectQuery ="SELECT * FROM "+ TABLE_CONTACT;
+        String selectQuery ="SELECT * FROM "+TABLE_CONTACT;
         SQLiteDatabase db= this.getWritableDatabase();
         Cursor cursor= db.rawQuery(selectQuery,null);
 
@@ -107,13 +130,37 @@ public class SqlPelangganHelper extends SQLiteOpenHelper {
                 dataPojo.setKode_baca(cursor.getString(7));
                 dataPojo.setStatus(cursor.getString(8));
                 //Adding contact to list
+//                Log.d("DATA_PEL",dataPojo.getNo_Pel()+" - "+dataPojo.getStatus());
                 pelangganList.add(dataPojo);
             }while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
-        Log.d("DATABASE","SELECT * FROM TABEL = " + pelangganList.size());
+//        Log.d("DATABASE","SELECT * FROM TABEL = " + pelangganList.size());
         return  pelangganList;
+    }
+
+    public List<DataPojo> getAllDraft(){
+        List<DataPojo> drafList = new ArrayList<DataPojo>();
+        String selectQuery ="SELECT * FROM "+TABEL_DRAF;
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor cursor= db.rawQuery(selectQuery,null);
+
+        if(cursor.moveToFirst()){
+            do {
+                DataPojo draf= new DataPojo();
+                draf.setId1(Integer.parseInt(cursor.getString(0)));
+                draf.setId_pel(Integer.parseInt(cursor.getString(1)));
+                draf.setNama(cursor.getString(2));
+                draf.setStandKini(cursor.getString(3));
+                draf.setFoto(cursor.getString(4));
+                draf.setKeterangan(cursor.getString(5));
+                drafList.add(draf);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return  drafList;
     }
 
     public void delete() {
@@ -121,6 +168,26 @@ public class SqlPelangganHelper extends SQLiteOpenHelper {
             db.delete(TABLE_CONTACT,null,null);
             db.close();
             Log.d("DATABASE","TRUNCATE TABLE");
-
     }
+
+    public void deleteDraf(int id1) {
+        SQLiteDatabase db= this.getWritableDatabase();
+        db.delete(TABEL_DRAF,ID1+"="+id1,null);
+        db.close();
+        Log.d("DATA_PEL",id1 +" Has Been Deleted");
+    }
+
+    public void updateStatus(int id_pel){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+        values.put(STATUS,"Selesai");
+        db.update(TABLE_CONTACT,values,ID_PEL+ " = ?", new String[]{String.valueOf(id_pel)});
+    }
+//    public void update(int id_pel){
+//        SQLiteDatabase db= this.getWritableDatabase();
+//        ContentValues values= new ContentValues();
+//        values.put(STATUS,"DRAF");
+//        db.update(TABLE_CONTACT,values,ID_PEL+ " = ?", new String[]{String.valueOf(id_pel)});
+//
+//    }
 }

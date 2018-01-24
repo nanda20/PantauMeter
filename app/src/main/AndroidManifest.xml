@@ -21,18 +21,20 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCShov5xTv1tBM7xDXk8gJnbdDxtS2BzhA" />
 
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".ListPelanggan"/>
-        <activity android:name=".InputMeteran" />
-        <activity android:name=".DetailPelanggan" />
-        <activity android:name=".Tab">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ListPelanggan" />
+        <activity android:name=".InputMeteran" />
+        <activity android:name=".DetailPelanggan" />
+        <activity android:name=".Tab" />
 
+        <activity android:name=".InputIP" />
+        <activity android:name=".Login"/>
     </application>
 
 </manifest>

@@ -30,6 +30,7 @@ import cz.msebera.android.httpclient.Header;
 
 
 public class ListPelanggan extends AppCompatActivity {
+
     public RecyclerView myRecyclerView;
     public RecyclerView.LayoutManager mLayoutManager;
     public RecyclerView.Adapter mAdapter;
@@ -38,6 +39,7 @@ public class ListPelanggan extends AppCompatActivity {
     private Button btnUpdateList;
     private String URL="";
     private SqlPelangganHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,8 +114,9 @@ public class ListPelanggan extends AppCompatActivity {
         final AsyncHttpClient client= new AsyncHttpClient();
 
 //      arrayList.clear();
-//        URL="http://10.0.3.2:8080/manajemen_pelanggan/API/pelanggan";
-        URL="http://192.168.1.7:8080/manajemen_pelanggan/API/pelanggan";
+        URL=GetConnection.IP+"/manajemen_pelanggan/API/pelanggan";
+//        Toast.makeText(getApplicationContext(),"List"+URL,Toast.LENGTH_LONG).show();
+//        URL="http://192.168.1.7:8080/manajemen_pelanggan/API/pelanggan";
         client.setConnectTimeout(10000);
         client.get(getApplicationContext(), URL,new JsonHttpResponseHandler(){
 
@@ -126,8 +129,10 @@ public class ListPelanggan extends AppCompatActivity {
                     for (int i=0;i<jsonArray.length();i++){
 
                         JSONObject object= jsonArray.getJSONObject(i);
-                        DataPojo data= new DataPojo(Integer.valueOf(object.getString("id")),Integer.valueOf(object.getString("id_pel")),object.getString("nama"),object.getString("alamat"),object.getString("no_tiang"),object.getString("lat"),object.getString("long"),object.getString("kode_baca"),object.getString("status"));
-                        db.addContact(data);
+//                        if(object.getString("petugas_cek").equals("juki")) {
+                            DataPojo data = new DataPojo(Integer.valueOf(object.getString("id")), Integer.valueOf(object.getString("id_pel")), object.getString("nama"), object.getString("alamat"), object.getString("no_tiang"), object.getString("lat"), object.getString("long"), object.getString("kode_baca"), object.getString("status"));
+                            db.addContact(data);
+//                        }
 
                     }
                     if(status==1){
@@ -189,6 +194,7 @@ public class ListPelanggan extends AppCompatActivity {
             holder.id.setText(String.valueOf(pl.getNo_Pel()));
             holder.nama.setText(String.valueOf(pl.getNama()));
 
+
         }
 
         @Override
@@ -198,21 +204,23 @@ public class ListPelanggan extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
-            public TextView id,nama;
+            public TextView id,nama,status;
             public ViewHolder(View itemView) {
                 super(itemView);
 
                 id =(TextView)itemView.findViewById(R.id.id);
                 nama=(TextView)itemView.findViewById(R.id.nama);
+
             }
         }
     }
 
     @Override
     protected void onResume() {
-
         super.onResume();
+
     }
+
 
 
 

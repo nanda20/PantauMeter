@@ -12,6 +12,10 @@
         "source": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.0\\res\\layout\\design_layout_snackbar.xml"
     },
     {
+        "merged": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_login.xml",
+        "source": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
         "merged": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
         "source": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.0\\res\\layout\\design_navigation_menu_item.xml"
     },
@@ -48,12 +52,12 @@
         "source": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\layout\\notification_template_media.xml"
     },
     {
-        "merged": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
-        "source": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.0\\res\\layout\\design_navigation_item_header.xml"
-    },
-    {
         "merged": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_two.xml",
         "source": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\src\\main\\res\\layout\\fragment_two.xml"
+    },
+    {
+        "merged": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
+        "source": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.0\\res\\layout\\design_navigation_item_header.xml"
     },
     {
         "merged": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
@@ -218,6 +222,10 @@
     {
         "merged": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
         "source": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_input_ip.xml",
+        "source": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\src\\main\\res\\layout\\activity_input_ip.xml"
     },
     {
         "merged": "D:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_input_meteran.xml",

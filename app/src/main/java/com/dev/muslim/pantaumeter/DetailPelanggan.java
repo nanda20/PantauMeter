@@ -59,7 +59,7 @@ public class DetailPelanggan extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(DetailPelanggan.this, ListPelanggan.class);
+                Intent intent= new Intent(DetailPelanggan.this, Tab.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
@@ -70,12 +70,17 @@ public class DetailPelanggan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
               Intent intent1= new Intent(getApplicationContext(),InputMeteran.class);
+              intent1.putExtra("status","input");
               intent1.putExtra("id1",Integer.valueOf(intent.getIntExtra("id1",0)));
               intent1.putExtra("no_pel",Integer.valueOf(intent.getIntExtra("no_pel",0)));
-               intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+              intent1.putExtra("nama",intent.getStringExtra("nama"));
+              intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
               startActivity(intent1);
             }
         });
 
+
+
     }
+
 }

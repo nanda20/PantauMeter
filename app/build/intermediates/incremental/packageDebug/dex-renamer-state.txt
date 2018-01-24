@@ -1,4 +1,4 @@
-#Wed Aug 09 13:12:58 ICT 2017
+#Thu Jan 18 08:14:50 ICT 2018
 base.0=D\:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
 renamed.0=classes.dex
 file.0=D\:\\POLINEMA\\sem5\\Andro\\PantauMeter\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex

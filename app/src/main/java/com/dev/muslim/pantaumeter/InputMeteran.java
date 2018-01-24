@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,8 +60,10 @@ public class InputMeteran extends AppCompatActivity {
     TextView id_pel,txtStatusUpload;
     ImageView imageView;
     EditText txtStandIni,txtKelainan;
-    Button btnUpload;
+    Button btnUpload,btnDraf;
     public boolean statusUpload=false;
+
+    Intent intent;
 
     //utilitys for capture
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
@@ -68,9 +72,10 @@ public class InputMeteran extends AppCompatActivity {
     private Uri fileUri; // file url to store image/video
     private GetConnection connection= null;
     private String id1="";
+    private String status;
     //upload
-//  private static final String SERVER_PATH = "http://10.0.3.2:8080/manajemen_pelanggan/api/upload/";
-    private static final String SERVER_PATH = "http://192.168.1.7:8080/manajemen_pelanggan/api/upload/";
+//     private static final String SERVER_PATH = "http://192.168.1.116:8080/manajemen_pelanggan/api/upload/";
+    private static String SERVER_PATH = GetConnection.IP +"/manajemen_pelanggan/api/upload/";
     private static final int READ_REQUEST_CODE = 300;
 
     @Override
@@ -82,9 +87,25 @@ public class InputMeteran extends AppCompatActivity {
         txtStandIni = (EditText)findViewById(R.id.standIni);
         txtKelainan= (EditText)findViewById(R.id.kelainan);
         btnUpload= (Button)findViewById(R.id.btnUpload);
+        btnDraf= (Button)findViewById(R.id.btnDraf);
         txtStatusUpload =(TextView)findViewById(R.id.txtStatusUpload);
 
-        Intent intent= getIntent();
+
+
+          intent= getIntent();
+        status = intent.getStringExtra("status");
+        if(status.equals("draf")){
+            id1=String.valueOf(intent.getIntExtra("id1",0));
+            id_pel.setText(String.valueOf(intent.getIntExtra("no_pel",0)));
+            txtStandIni.setText(intent.getStringExtra("stand"));
+            txtKelainan.setText(intent.getStringExtra("keterangan"));
+            Uri uri= Uri.parse(intent.getStringExtra("foto").toString());
+            fileUri =uri;
+            imageView.setImageURI(uri);
+            btnDraf.setEnabled(false);
+        }else{
+            btnDraf.setEnabled(true);
+        }
         id_pel.setText(String.valueOf(intent.getIntExtra("no_pel",0)));
         id1=String.valueOf(intent.getIntExtra("id1",0));
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -102,13 +123,53 @@ public class InputMeteran extends AppCompatActivity {
                 if(connection.isNetworkAvailable(getApplicationContext())) {
                     new UploadFileToServer().execute();
                 }else{
-                    Toast.makeText(getApplicationContext(),"Tidak Ada Jaringan Internet",Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(),"Tidak Ada Jaringan Internet",Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder dialogDraf = new AlertDialog.Builder(InputMeteran.this);
+                    dialogDraf.setCancelable(false);
+                    dialogDraf.setTitle("Tidak Ada Jaringan Internet");
+                    dialogDraf.setMessage("Gagal Upload,Coba beberapa saat Lagi , Simpan ke draf ?" );
+                    dialogDraf.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    })
+                            .setNegativeButton("Save ", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    saveToDraf();
+                                }
+                            });
+
+                    final AlertDialog alert = dialogDraf.create();
+                    alert.show();
+
                 }
+            }
+        });
+        btnDraf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveToDraf();
             }
         });
 
     }
+    public void saveToDraf(){
+        DataPojo draf= new DataPojo();
+        draf.setId1(Integer.valueOf(id1));
+        draf.setId_pel(Integer.valueOf(id_pel.getText().toString()));
+        draf.setStandKini(txtStandIni.getText().toString());
+        draf.setNama(intent.getStringExtra("nama"));
+        draf.setFoto(fileUri.getPath().toString());
+        draf.setKeterangan(txtKelainan.getText().toString());
 
+        Toast.makeText(getApplicationContext(),"Berhasil Menyimpan Ke Draf",Toast.LENGTH_SHORT).show();
+        btnDraf.setEnabled(false);
+        btnUpload.setEnabled(false);
+        new SqlPelangganHelper(getApplicationContext()).addDraf(draf);
+        new SqlPelangganHelper(getApplicationContext()).updateStatus(Integer.valueOf(id_pel.getText().toString()));
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
@@ -220,11 +281,13 @@ public class InputMeteran extends AppCompatActivity {
             if(!connection.isNetworkAvailable(getApplicationContext()))
             {
                 Toast.makeText(getApplicationContext(),"Upload Terhenti, Coba beberapa saat lagi ",Toast.LENGTH_LONG).show();
-
                 onCancelled();
                 onDestroy();
-                txtStatusUpload.setText("Gagal Upload,Coba beberapa saat Lagi");
 
+
+
+//                txtStatusUpload.setText("Gagal Upload,Coba beberapa saat Lagi");
+                        // saveToDraf();
                 if (dialog.isShowing()) {
                     dialog.dismiss();
                 }
@@ -242,9 +305,37 @@ public class InputMeteran extends AppCompatActivity {
             if(statusUpload==true){
                 Toast.makeText(getApplicationContext(),"Data Berhasil di Upload",Toast.LENGTH_LONG).show();
                 btnUpload.setEnabled(false);
+                btnDraf.setEnabled(false);
+
+                if(status.equals("draf")) {
+                    new SqlPelangganHelper(getApplicationContext()).deleteDraf(Integer.valueOf(id1));
+                }
                 txtStatusUpload.setText("Data Berhasil Di Upload");
             }else{
-                Toast.makeText(getApplicationContext(),"Data Gagal di Upload",Toast.LENGTH_LONG).show();
+//                new SqlPelangganHelper(getApplicationContext()).update(Integer.valueOf(String.valueOf(id_pel.getText())));
+
+
+                final AlertDialog.Builder dialogDraf = new AlertDialog.Builder(InputMeteran.this);
+                dialogDraf.setCancelable(false);
+                dialogDraf.setTitle("Tidak Ada Jaringan Internet");
+                dialogDraf.setMessage("Data Gagal di Upload,Coba beberapa saat Lagi , Simpan ke draf ?" );
+                dialogDraf.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                })
+                        .setNegativeButton("Save ", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                saveToDraf();
+                            }
+                        });
+
+                final AlertDialog alert = dialogDraf.create();
+                alert.show();
+
+//                Toast.makeText(getApplicationContext(),"Data Gagal di Upload",Toast.LENGTH_LONG).show();
                 txtStatusUpload.setText("Gagal Upload,Coba beberapa saat Lagi");
             }
         }
@@ -262,10 +353,10 @@ public class InputMeteran extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        params.setUseJsonStreamer(false);
+//      params.setUseJsonStreamer(false);
         params.put("id1",id1);
         params.put("id_pel",String.valueOf(id_pel.getText()));
-        params.put("stand",String.valueOf(txtStandIni.getText()));
+        params.put("stand_kini",String.valueOf(txtStandIni.getText()));
         params.put("kelainan",String.valueOf(txtKelainan.getText()));
 
         //client.setConnectTimeout(3000);
@@ -277,19 +368,15 @@ public class InputMeteran extends AppCompatActivity {
                 statusUpload=true;
             }
 
-
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
                 Log.d("response"," Failed "+errorResponse.toString());
                 statusUpload=false;
-
-//                Toast.makeText(getApplicationContext(),"Data Gagal di Upload",Toast.LENGTH_LONG).show();
-
+//              Toast.makeText(getApplicationContext(),"Data Gagal di Upload",Toast.LENGTH_LONG).show();
             }
 
         });
-
 
     }
 
@@ -339,7 +426,6 @@ public class InputMeteran extends AppCompatActivity {
             return cursor.getString(idx);
         }
     }
-
     public File photoCompressor(File photoFile) {
 
         Bitmap b = BitmapFactory.decodeFile(photoFile.getAbsolutePath());

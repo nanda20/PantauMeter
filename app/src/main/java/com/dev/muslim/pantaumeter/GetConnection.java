@@ -10,6 +10,10 @@ import android.support.design.widget.AppBarLayout;
  */
 
 public class GetConnection {
+    public static String IP="http://192.168.230.32:8080";
+//    public static String IP="http://192.168.43.116:8080";
+//     public static String IP="http://10.0.3.2:8080";
+//    public static String IP;
 
 
     private static GetConnection instance = null;

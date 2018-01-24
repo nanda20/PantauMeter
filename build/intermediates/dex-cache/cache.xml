@@ -21,21 +21,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.0_4b47017ea1f87978681945c5051dacf4529ce5e1.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.1"
         sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
         <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.1.0_d6a6052d7139e0b28e5c8a02d9e688c7c56b47b4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.0_4b47017ea1f87978681945c5051dacf4529ce5e1.jar" />
     </item>
     <item
         is-multidex="false"
@@ -111,21 +111,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\owner\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\okio-1.6.0_9f753b23acb78382a54741a0b27e6354c87428bb.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.1"
         sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
         <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.1.0_bfbf0cd678c3d5fc85445b5c0e7057658deaf646.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\owner\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="D:\POLINEMA\sem5\Andro\PantauMeter\app\build\intermediates\pre-dexed\debug\okio-1.6.0_9f753b23acb78382a54741a0b27e6354c87428bb.jar" />
     </item>
     <item
         is-multidex="false"

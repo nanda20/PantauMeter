@@ -14,8 +14,18 @@ public class DataPojo {
     private String lng;
     private String kode_baca;
     private String status;
+    private String standKini;
+    private String foto;
+    private String keterangan;
+
     public  DataPojo(){
 
+    }
+    public DataPojo(int id_pel,String standKini,String foto,String keterangan){
+        this.id_pel=id_pel;
+        this.standKini=standKini;
+        this.foto=foto;
+        this.keterangan=keterangan;
     }
 
     public DataPojo(int id1,int id_pel,String nama, String alamat ,String  no_tiang, String lat,String lng,String kode_baca,String status) {
@@ -100,5 +110,29 @@ public class DataPojo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getStandKini() {
+        return standKini;
+    }
+
+    public void setStandKini(String standKini) {
+        this.standKini = standKini;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
 }
